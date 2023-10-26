@@ -37,7 +37,7 @@
 					nexusUrl: '192.168.1.20:8081',
 					nexusVersion: 'nexus3',
 					protocol: 'http',
-					repository: 'http://192.168.1.20:8081/repository/maven-releases/',
+					repository: 'maven-releases/',
 					version: '1.0'
             }
         }
