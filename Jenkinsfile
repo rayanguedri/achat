@@ -7,9 +7,9 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+       stage('Checkout') {
             steps {
-                checkout scm
+                checkout([$class: 'GitSCM', branches: [[name: 'rayan-guedri']], userRemoteConfigs: [[url: 'https://github.com/rayanguedri/achat.git']]])
             }
         }
 
