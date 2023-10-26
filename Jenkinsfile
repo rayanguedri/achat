@@ -25,6 +25,12 @@ pipeline {
             }
         }
 
+         stage('SonarQube Analysis') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=rayan'
+            }
+        }
+
         stage('Publish Artifacts to Nexus') {
             steps {
                 script {
