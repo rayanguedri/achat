@@ -46,19 +46,22 @@ pipeline {
         stage('Calculate Facture') {
             steps {
                 script {
-                   echo "1"
+                    // Include the target directory in the classpath
+                    def classpath = ["target/classes"]
+                    currentBuild.classLoader.addURLs(classpath.collect { it as URL })
+
+                    // Now you should be able to access the Facture class
                     def facture = new tn.esprit.rh.achat.entities.Facture()
 
-                   
+                    // Set the values of montantFacture and montantRemise (you can set them based on your data)
                     facture.setMontantFacture(100.0)
                     facture.setMontantRemise(20.0)
 
-                   echo "2"
+                    // Calculate the difference
                     def difference = facture.getMontantFacture() - facture.getMontantRemise
 
-                    echo "3"
+                    // Print the result
                     echo "MontantFacture - MontantRemise = ${difference}"
-			echo "4"
                 }
             }
         }
