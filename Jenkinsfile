@@ -46,22 +46,16 @@ pipeline {
         stage('Calculate Facture') {
             steps {
                 script {
-                    // Include the target directory in the classpath
-                    def classpath = ["target/classes"]
-                    currentBuild.classLoader.addURLs(classpath.collect { it as URL })
+                    
+                    sh "curl -O http://192.168.1.20:8081/repository/maven-releases/tn/esprit/rh/achat/1.0/achat-1.0.jar"
 
-                    // Now you should be able to access the Facture class
-                    def facture = new tn.esprit.rh.achat.entities.Facture()
+                    
+                    def factureCalculator = new groovy.util.ConfigSlurper().parse(new File('achat-1.0.jar').toURL())
+                    def result = factureCalculator.calculateFacture()
 
-                    // Set the values of montantFacture and montantRemise (you can set them based on your data)
-                    facture.setMontantFacture(100.0)
-                    facture.setMontantRemise(20.0)
-
-                    // Calculate the difference
-                    def difference = facture.getMontantFacture() - facture.getMontantRemise
-
-                    // Print the result
-                    echo "MontantFacture - MontantRemise = ${difference}"
+                    echo "1"
+                    echo "MontantFacture - MontantRemise = ${result}"
+                    echo "2"
                 }
             }
         }
