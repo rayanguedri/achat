@@ -47,25 +47,11 @@ pipeline {
         stage('Calculate Facture') {
             steps {
                 script {
-                    def artifactUrl = "${NEXUS_URL}/${NEXUS_REPO}/tn/esprit/rh/achat/1.0/achat-1.0.jar"
-                    sh "curl -O $artifactUrl"
-                    
-                    // Load the JAR file
-                    def loader = new GroovyClassLoader()
-                    def jar = new JarFile('achat-1.0.jar')
-                    def entries = jar.entries()
+                    def montantFacture = 100.0
+                    def montantRemise = 20.0
+                    def difference = montantFacture - montantRemise
 
-                    while (entries.hasMoreElements()) {
-                        def entry = entries.nextElement()
-                        def entryName = entry.getName()
-
-                        if (entryName.endsWith('.class')) {
-                            def className = entryName.replaceAll('/', '.').replace(".class", "")
-                            def loadedClass = loader.parseClass(jar.getInputStream(entry), className)
-                            
-                           
-                        }
-                    }
+                    echo "MontantFacture - MontantRemise = ${difference}"
                 }
             }
         }
