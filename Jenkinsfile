@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         NEXUS_REPO = 'maven-releases' 
+        NEXUS_URL = 'http://192.168.1.20:8081/repository'  // Nexus repository base URL
     }
 
     stages {
@@ -46,16 +47,25 @@ pipeline {
         stage('Calculate Facture') {
             steps {
                 script {
+                    def artifactUrl = "${NEXUS_URL}/${NEXUS_REPO}/tn/esprit/rh/achat/1.0/achat-1.0.jar"
+                    sh "curl -O $artifactUrl"
                     
-                    sh "curl -O http://192.168.1.20:8081/repository/maven-releases/tn/esprit/rh/achat/1.0/achat-1.0.jar"
+                    // Load the JAR file
+                    def loader = new GroovyClassLoader()
+                    def jar = new JarFile('achat-1.0.jar')
+                    def entries = jar.entries()
 
-                    
-                    def factureCalculator = new groovy.util.ConfigSlurper().parse(new File('achat-1.0.jar').toURL())
-                    def result = factureCalculator.calculateFacture()
+                    while (entries.hasMoreElements()) {
+                        def entry = entries.nextElement()
+                        def entryName = entry.getName()
 
-                    echo "1"
-                    echo "MontantFacture - MontantRemise = ${result}"
-                    echo "2"
+                        if (entryName.endsWith('.class')) {
+                            def className = entryName.replaceAll('/', '.').replace(".class", "")
+                            def loadedClass = loader.parseClass(jar.getInputStream(entry), className)
+                            
+                           
+                        }
+                    }
                 }
             }
         }
