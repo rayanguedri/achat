@@ -4,6 +4,8 @@ pipeline {
     environment {
         NEXUS_REPO = 'maven-releases' 
         NEXUS_URL = 'http://192.168.1.20:8081/repository'  // Nexus repository base URL
+        DOCKER_HUB_USERNAME = credentials('docker-hub-username')
+        DOCKER_HUB_PASSWORD = credentials('docker-hub-password')
     }
 
     stages {
@@ -57,6 +59,21 @@ stage('Build Docker Image') {
         }
     }
 }
+
+
+         stage('Push Docker Image to Docker Hub') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+            script {
+                def dockerImageName = 'metis9/alpine:1.0.0'
+                sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+                sh "docker push $dockerImageName"
+            }
+        }
+    }
+}
+
+
 
 
 
