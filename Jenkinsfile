@@ -68,7 +68,7 @@ stage('Build Docker Image') {
         
             }
         }
-        stage('Publish Artifacts to Nexus') {
+/*        stage('Publish Artifacts to Nexus') {
             steps {
                 script {
                     nexusArtifactUploader artifacts: [[
@@ -85,7 +85,7 @@ stage('Build Docker Image') {
                         version: '1.0'
                 }
             }
-        }
+        }*/
 
 
 
