@@ -39,7 +39,18 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nehdi.1965'
             }
         }
-       /*stage('Publish Artifacts to Nexus') {
+        
+      
+
+        stage("Maven Build") {
+            steps {
+                script {
+                    sh "mvn package -DskipTests=true"
+                }
+            }
+        }
+        
+ stage('Publish Artifacts to Nexus') {
             steps {
                 script {
                     nexusArtifactUploader artifacts: [[
@@ -56,17 +67,7 @@ pipeline {
                         version: '1.0'
                 }
             }
-        }*/
-
-        stage("Maven Build") {
-            steps {
-                script {
-                    sh "mvn package -DskipTests=true"
-                }
-            }
         }
-        
-
         
 
 stage('Build Docker Image') {
