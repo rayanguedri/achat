@@ -64,8 +64,8 @@ pipeline {
 stage('Build Docker Image') {
     steps {
         script {
-            sh "cp target/achat-1.0.jar \${WORKSPACE}"
-            def dockerImage = docker.build("mohamednehdi/alpine:1.0.0", "-f Dockerfile .")
+            sh 'docker build -t mohamednehdi/alpine:1.0.0 -f Dockerfile .'
+            //def dockerImage = docker.build("mohamednehdi/alpine:1.0.0", "-f Dockerfile .")
         }
     }
 }
