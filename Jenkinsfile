@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NEXUS_REPO = 'maven-releases' 
-        NEXUS_URL = 'http://192.168.1.20:8081/repository'  // Nexus repository base URL
+        NEXUS_URL = 'http://192.168.1.20:8081/repository'  
         DOCKER_HUB_USERNAME = credentials('docker-hub-username')
         DOCKER_HUB_PASSWORD = credentials('docker-hub-password')
     }
