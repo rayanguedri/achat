@@ -55,13 +55,16 @@ stage('Build Docker Image') {
                 }
             }
         }
+        
+        stage('Deploy with Docker Compose') {
+        steps {
+                sh 'docker-compose up -d'  // Use -d to run in detached mode
+        
+            }
+        }
 
 
 
 
-
-
-
-     
     }
 }
