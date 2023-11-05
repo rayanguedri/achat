@@ -39,19 +39,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nehdi.1965'
             }
         }
-        
-        
-
-        
-
-stage('Build Docker Image') {
-    steps {
-        script {
-            def dockerImage = docker.build("mohamednehdi/alpine:1.0.0", "-f Dockerfile .")
-        }
-    }
-}
-         stage('Publish Artifacts to Nexus') {
+        stage('Publish Artifacts to Nexus') {
             steps {
                 script {
                     nexusArtifactUploader artifacts: [[
@@ -69,6 +57,18 @@ stage('Build Docker Image') {
                 }
             }
         }
+        
+
+        
+
+stage('Build Docker Image') {
+    steps {
+        script {
+            def dockerImage = docker.build("mohamednehdi/alpine:1.0.0", "-f Dockerfile .")
+        }
+    }
+}
+         
 
 
             stage('Push Docker Image to Docker Hub') {
