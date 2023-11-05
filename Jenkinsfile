@@ -82,12 +82,12 @@ stage('Collect Jenkins Metrics') {
 }
 
 
-        stage('Curl Grafana Dashboard') {
+  stage('Curl Grafana Dashboard') {
     steps {
         script {
             def grafanaDashboardURL = 'http://192.168.1.20:3000/d/haryan-jenkins/jenkins3a-performance-and-health-overview?orgId=1&from=now-5m&to=now'
 
-            def curlExitCode = sh(script: "curl -o /dev/null -s -w '%{http_code}' $grafanaDashboardURL", returnStatus: true)
+            def curlExitCode = sh(script: "curl -o /dev/null -s -w '%{http_code}' -L $grafanaDashboardURL", returnStatus: true)
 
             if (curlExitCode == 200) {
                 echo "Successfully curled Grafana dashboard."
@@ -97,6 +97,7 @@ stage('Collect Jenkins Metrics') {
         }
     }
 }
+
 
 
 
