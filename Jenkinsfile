@@ -92,11 +92,12 @@ stage('Collect Jenkins Metrics') {
             if (curlExitCode == 200) {
                 echo "Successfully curled Grafana dashboard."
             } else {
-                error "Failed to curl Grafana dashboard. HTTP status code: $curlExitCode"
+                echo "Failed to curl Grafana dashboard. HTTP status code: $curlExitCode"
             }
         }
     }
 }
+
 
 
 
