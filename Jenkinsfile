@@ -53,6 +53,37 @@ pipeline {
             }
         }
 
+           stage('Collect Prometheus Metrics') {
+    steps {
+        script {
+            def prometheusMetrics = sh(script: "curl -s http://192.168.1.20:9090/metrics", returnStatus: true)
+
+            if (prometheusMetrics == 0) {
+                echo "Successfully collected Prometheus metrics from http://192.168.1.20:9090/metrics."
+            } else {
+                error "Failed to collect Prometheus metrics. The curl exit code was: $prometheusMetrics"
+            }
+        }
+    }
+}
+
+stage('Collect Jenkins Metrics') {
+    steps {
+        script {
+            def jenkinsMetrics = sh(script: "curl -s http://192.168.1.20:8080/prometheus/", returnStatus: true)
+
+            if (jenkinsMetrics == 0) {
+                echo "Successfully collected Jenkins metrics from http://192.168.1.20:8080/prometheus/."
+            } else {
+                error "Failed to collect Jenkins metrics. The curl exit code was: $jenkinsMetrics"
+            }
+        }
+    }
+}
+
+
+
+
      
         stage('Start MySQL Container') {
             steps {
