@@ -15,11 +15,7 @@ pipeline {
             }
         }
 
-       /* stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }*/
+        
         
         stage('Compile') {
             steps {
@@ -36,6 +32,12 @@ pipeline {
          stage('SonarQube Analysis') {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nehdi.1965'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'mvn clean'
             }
         }
 
