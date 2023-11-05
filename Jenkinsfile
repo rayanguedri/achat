@@ -61,17 +61,18 @@ stage('Build Docker Image') {
 }
 
 
-         stage('Push Docker Image to Docker Hub') {
+      stage('Push Docker Image to Docker Hub') {
     steps {
         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
             script {
-                def dockerImageName = 'metis9/alpine:1.0.0'
+                def dockerImageName = 'metis9/alpine:1.0.0' // Specify the Docker image name and tag here
                 sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
                 sh "docker push $dockerImageName"
             }
         }
     }
 }
+
 
 
 
