@@ -39,7 +39,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nehdi.1965'
             }
         }
-        stage('Publish Artifacts to Nexus') {
+     /*   stage('Publish Artifacts to Nexus') {
             steps {
                 script {
                     nexusArtifactUploader artifacts: [[
@@ -56,7 +56,7 @@ pipeline {
                         version: '1.0'
                 }
             }
-        }
+        }*/
         
 
         
