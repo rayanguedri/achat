@@ -39,7 +39,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nehdi.1965'
             }
         }
-        stage('Publish Artifacts to Nexus') {
+       stage('Publish Artifacts to Nexus') {
             steps {
                 script {
                     nexusArtifactUploader artifacts: [[
@@ -47,7 +47,7 @@ pipeline {
                         classifier: '',
                         file: 'target/achat-1.0.jar',
                         type: 'jar']],
-                        credentialsId: 'nexus-server',
+                        credentialsId: 'nexusCredentials',
                         groupId: 'tn.esprit.rh',
                         nexusUrl: '192.168.33.10:8081',
                         nexusVersion: 'nexus3',
