@@ -50,6 +50,17 @@ pipeline {
             }
         }
 
+stage('Build Docker Image') {
+    steps {
+        script {
+            def dockerImage = docker.build("metis9/alpine:1.0.0", "-f Dockerfile .")
+        }
+    }
+}
+
+
+
+
         stage('Calculate Facture') {
             steps {
                 script {
