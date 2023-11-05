@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'rayan-guedri']], userRemoteConfigs: [[url: 'https://github.com/rayanguedri/achat.git']])
+                checkout([$class: 'GitSCM', branches: [[name: 'rayan-guedri']], userRemoteConfigs: [[url: 'https://github.com/rayanguedri/achat.git']]])
             }
         }
 
@@ -57,7 +57,7 @@ pipeline {
         stage('Start MySQL Container') {
             steps {
                 script {
-                    def gitRepo = checkout([$class: 'GitSCM', branches: [[name: 'rayan-guedri']], userRemoteConfigs: [[url: 'https://github.com/rayanguedri/achat.git']])
+                    def gitRepo = checkout([$class: 'GitSCM', branches: [[name: 'rayan-guedri']], userRemoteConfigs: [[url: 'https://github.com/rayanguedri/achat.git']]])
                     def dockerComposeFilePath = 'docker-compose.yml'
                     sh "docker-compose -f ${dockerComposeFilePath} up -d"
                 }
