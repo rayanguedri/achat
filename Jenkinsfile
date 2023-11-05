@@ -14,7 +14,12 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: 'mohamed-nehdi']], userRemoteConfigs: [[url: 'https://github.com/rayanguedri/achat.git']]])
             }
         }
-
+        
+        stage('Build') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
         
         
         stage('Compile') {
@@ -35,11 +40,7 @@ pipeline {
             }
         }
         
-        stage('Build') {
-            steps {
-                sh 'mvn clean'
-            }
-        }
+        
 
         
 
