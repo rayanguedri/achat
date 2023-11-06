@@ -3,26 +3,17 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
 import tn.esprit.rh.achat.entities.Fournisseur;
-
 import tn.esprit.rh.achat.entities.DetailFacture;
 import tn.esprit.rh.achat.entities.Facture;
-
-
 import java.util.*;
-
-
 import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.Test;
 
 
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
+@SpringBootTest
 public class FactureServiceImplTest { 
 
     private Facture facture;
