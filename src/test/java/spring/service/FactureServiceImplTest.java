@@ -13,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 
-@SpringBootTest
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
 public class FactureServiceImplTest { 
 
     private Facture facture;
