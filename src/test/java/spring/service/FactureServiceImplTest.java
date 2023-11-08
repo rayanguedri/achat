@@ -27,12 +27,12 @@ public class FactureServiceImplTest {
 
     @Test
     public void testFactureFields() {
-        // Set field values
+       
         facture.setIdFacture(1L);
         facture.setMontantRemise(100.0f);
         facture.setMontantFacture(500.0f);
 
-        // Check if field values are set correctly
+        
         assertEquals(1L, facture.getIdFacture());
         assertEquals(100.0f, facture.getMontantRemise());
         assertEquals(500.0f, facture.getMontantFacture());
@@ -44,7 +44,7 @@ public class FactureServiceImplTest {
         facture.setDateCreationFacture(new Date());
         facture.setDateDerniereModificationFacture(new Date());
 
-        // Check if date fields are not null
+        
         assertNotNull(facture.getDateCreationFacture());
         assertNotNull(facture.getDateDerniereModificationFacture());
     }
