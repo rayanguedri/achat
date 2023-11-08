@@ -21,7 +21,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = {ReglementServiceImpl.class})
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
