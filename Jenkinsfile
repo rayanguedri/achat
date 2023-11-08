@@ -125,7 +125,7 @@ stage('Collect Jenkins Metrics') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
                     script {
-                        def dockerImageName = 'metis9/alpine:1.0.0' // Specify the Docker image name and tag here
+                        def dockerImageName = 'metis9/alpine:1.0.0'
                         sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
                         sh "docker push $dockerImageName"
                     }
