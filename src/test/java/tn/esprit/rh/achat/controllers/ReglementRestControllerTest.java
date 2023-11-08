@@ -32,7 +32,7 @@ import tn.esprit.rh.achat.services.IReglementService;
 
 @ContextConfiguration(classes = {ReglementRestController.class})
 @ExtendWith(SpringExtension.class)
-class ReglementRestControllerDiffblueTest {
+class ReglementRestControllerTest {
     @MockBean
     private IReglementService iReglementService;
 
