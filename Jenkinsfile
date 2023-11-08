@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages{
-    stage('gitPull') {
-      steps {
-        git branch: 'youssef-chahab', url: 'https://github.com/rayanguedri/achat.git'
-      }
-    }
+    stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'youssef-chahab']], userRemoteConfigs: [[url: 'https://github.com/rayanguedri/achat.git']]])
+            }
 }
 }
        
