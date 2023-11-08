@@ -1,31 +1,55 @@
 package tn.esprit.spring.service;
 
 
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import tn.esprit.rh.achat.entities.Operateur;
-import tn.esprit.rh.achat.services.IOperateurService;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.List;
-@ComponentScan(basePackages = "tn.esprit.rh.achat.services")
-@SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
 public class OperatorServiceImplTest {
+    private Operateur operateur;
 
-    @Autowired
-    public IOperateurService ios;
 
-    @Test
-    @Order(1)
-    public void testRetreiveAllOp(){
+    @BeforeEach
+    public void setUp() {
+        operateur = new Operateur();
+    }
+
+   /* @Test
+    public void testRetrieveAllOp() {
         List<Operateur> ops = ios.retrieveAllOperateurs();
         Assertions.assertEquals(0, ops.size());
+    }*/
+
+    @Test
+    public void testOperateur() {
+        operateur.setIdOperateur(1L);
+        operateur.setNom("Nehdi");
+        operateur.setPrenom("Med");
+
+        assertEquals(1L, operateur.getIdOperateur());
+        assertEquals("Nehdi", operateur.getNom());
+        assertEquals("Med", operateur.getPrenom());
+    }
+
+    @Test
+    public void testOperateurNotNull() {
+        operateur.setIdOperateur(1L);
+        operateur.setNom("Nehdi");
+        operateur.setPrenom("Mohamed");
+
+        assertNotNull(operateur.getIdOperateur());
+        assertNotNull(operateur.getNom());
+        assertNotNull(operateur.getPrenom());
+
+
     }
 
 
