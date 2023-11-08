@@ -16,7 +16,7 @@ services:
 
 
   app_achat_back:
-    image : anasbenouaghrem/spring-app:1.0
+    image : wassimhl1920/achat:1.0
     depends_on:
       - mysqldatabase
     restart: on-failure
