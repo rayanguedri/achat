@@ -1,12 +1,11 @@
 pipeline {
     agent any
     
-    stages {
-        stage('gitPull') {
-            steps {
-                git branch: 'youssef-chahab', url: 'https://github.com/rayanguedri/achat.git'
-            }
-        }
+    stage('gitPull') {
+  steps {
+    git clone url: 'https://github.com/rayanguedri/achat.git', branch: 'youssef-chahab'
+  }
+}
         
         stage('Clean') {
             steps {
