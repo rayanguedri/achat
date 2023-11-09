@@ -15,14 +15,14 @@ pipeline {
             }
         }
         
-        stage('Maven Clean') {
+        stage('Build') {
             steps {
                 sh 'mvn clean'
             }
         }
         
         
-        stage('Maven Compile') {
+        stage('Compile') {
             steps {
                 sh 'mvn compile'
             }
