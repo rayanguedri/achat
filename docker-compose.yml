@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Root
+      MYSQL_DATABASE: achat_db
+      MYSQL_USER: youssef
+      MYSQL_PASSWORD: Root
+    ports:
+      - "3306:3306"
+
+  achat-app:
+    image: youssefchahab/achat:1.6
+    ports:
+      - "9091:9091"
+    depends_on:
+      - mysql
+  
