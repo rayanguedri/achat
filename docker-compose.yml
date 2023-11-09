@@ -12,7 +12,7 @@ services:
       - "3306:3306"
 
   achat-app:
-    image: youssefchahab/achat:1.6
+    image: youssefchahab/achat:1.9
     ports:
       - "9091:9091"
     depends_on:
